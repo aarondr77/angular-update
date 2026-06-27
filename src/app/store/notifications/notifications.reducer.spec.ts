@@ -3,9 +3,7 @@ import * as NotificationsActions from './notifications.actions';
 
 describe('notificationsReducer', () => {
   it('loads preferences', () => {
-    const prefs = [
-      { id: 'a', label: 'A', enabled: true, category: 'email' as const },
-    ];
+    const prefs = [{ id: 'a', label: 'A', enabled: true, category: 'email' as const }];
     const state = notificationsReducer(
       initialState,
       NotificationsActions.loadPreferencesSuccess({ preferences: prefs })
@@ -15,17 +13,12 @@ describe('notificationsReducer', () => {
   });
 
   it('toggles preference', () => {
-    const prefs = [
-      { id: 'a', label: 'A', enabled: true, category: 'email' as const },
-    ];
+    const prefs = [{ id: 'a', label: 'A', enabled: true, category: 'email' as const }];
     const loaded = notificationsReducer(
       initialState,
       NotificationsActions.loadPreferencesSuccess({ preferences: prefs })
     );
-    const state = notificationsReducer(
-      loaded,
-      NotificationsActions.togglePreference({ id: 'a' })
-    );
+    const state = notificationsReducer(loaded, NotificationsActions.togglePreference({ id: 'a' }));
     expect(state.preferences[0].enabled).toBe(false);
   });
 });
