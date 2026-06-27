@@ -1,0 +1,90 @@
+<div class="client-detail-page" data-testid="client-detail-page" *ngIf="client$ | async as client">
+  <div class="client-detail-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <button mat-button (click)="goBack()" data-testid="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Dashboard
+      </button>
+      <button mat-button routerLink="/notifications" data-testid="nav-notifications">
+        Notifications
+      </button>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="client-status-badge"
+      [attr.data-testid]="'client-status-badge'"
+      [ngClass]="statusClass(client.status)"
+    >
+      {{ client.status }}
+    </button>
+  </div>
+
+  <mat-card class="client-detail-header-card">
+    <mat-card-header>
+      <mat-card-title>{{ client.name }}</mat-card-title>
+      <mat-card-subtitle>{{ client.id }} · {{ client.tier }} tier</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px" class="detail-body">
+    <div fxFlex="60" fxFlex.lt-md="100">
+      <mat-card class="info-panel">
+        <mat-card-header>
+          <mat-card-title>Account Overview</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutGap="24px" fxLayoutWrap>
+            <div>
+              <p class="label">Balance</p>
+              <p class="value">{{ client.balance | currencyCompact }}</p>
+            </div>
+            <div>
+              <p class="label">Account Manager</p>
+              <p class="value">{{ client.accountManager }}</p>
+            </div>
+            <div>
+              <p class="label">Last Contact</p>
+              <p class="value">{{ client.lastContact }}</p>
+            </div>
+          </div>
+          <mat-form-field appearance="outline" class="notes-field">
+            <mat-label>Servicing notes</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="notes"></textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="timeline-panel">
+        <mat-card-header>
+          <mat-card-title>Recent Activity</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <ul class="timeline">
+            <li *ngFor="let entry of client.balanceHistory; let i = index">
+              Period {{ i + 1 }}: Balance {{ entry | currencyCompact }}
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxFlex="40" fxFlex.lt-md="100">
+      <mat-card class="sparkline-panel">
+        <mat-card-header>
+          <mat-card-title>Balance Trend</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <bofa-legacy-sparkline
+            [data]="client.balanceHistory"
+            [ariaLabel]="'Balance trend for ' + client.name"
+          ></bofa-legacy-sparkline>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading$ | async" class="loading-state">
+  <mat-spinner></mat-spinner>
+</div>

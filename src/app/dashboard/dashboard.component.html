@@ -1,0 +1,70 @@
+<div class="dashboard" data-testid="dashboard-page">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <span>Servicing Dashboard</span>
+    <span class="spacer"></span>
+    <span *ngIf="user$ | async as user" class="user-label">{{ user.displayName }}</span>
+    <button mat-button (click)="goToNotifications()" data-testid="nav-notifications">
+      Notifications
+    </button>
+    <button mat-button (click)="logout()" data-testid="logout-btn">Sign Out</button>
+  </mat-toolbar>
+
+  <div class="dashboard-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Client Portfolio</mat-card-title>
+        <mat-card-subtitle *ngIf="count$ | async as count">{{ count }} clients</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="loading$ | async" class="loading">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        <p *ngIf="error$ | async as error" class="error" role="alert">{{ error }}</p>
+        <table
+          mat-table
+          [dataSource]="(clients$ | async) || []"
+          matSort
+          class="client-table"
+          *ngIf="(loading$ | async) === false"
+        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Client ID</th>
+            <td mat-cell *matCellDef="let client">{{ client.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let client">{{ client.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let client">
+              <mat-chip-list>
+                <mat-chip [class.active]="client.status === 'Active'">{{ client.status }}</mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="tier">
+            <th mat-header-cell *matHeaderCellDef>Tier</th>
+            <td mat-cell *matCellDef="let client">{{ client.tier }}</td>
+          </ng-container>
+          <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
+            <td mat-cell *matCellDef="let client">{{ client.balance | currencyCompact }}</td>
+          </ng-container>
+          <ng-container matColumnDef="accountManager">
+            <th mat-header-cell *matHeaderCellDef>Account Manager</th>
+            <td mat-cell *matCellDef="let client">{{ client.accountManager }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="onRowClick(row)"
+            class="clickable-row"
+            [attr.data-testid]="'client-row-' + row.id"
+          ></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

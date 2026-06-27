@@ -1,0 +1,84 @@
+{
+  "clients": [
+    {
+      "id": "CLT-1001",
+      "name": "Acme Holdings LLC",
+      "status": "Active",
+      "tier": "Premier",
+      "accountManager": "Sarah Chen",
+      "balance": 2450000,
+      "lastContact": "2024-03-15",
+      "balanceHistory": [2100000, 2180000, 2250000, 2310000, 2380000, 2420000, 2450000]
+    },
+    {
+      "id": "CLT-1002",
+      "name": "Northwind Capital Partners",
+      "status": "Active",
+      "tier": "Premier",
+      "accountManager": "James Okonkwo",
+      "balance": 1875000,
+      "lastContact": "2024-03-12",
+      "balanceHistory": [1650000, 1700000, 1750000, 1780000, 1820000, 1850000, 1875000]
+    },
+    {
+      "id": "CLT-1003",
+      "name": "Summit Retail Group",
+      "status": "Review",
+      "tier": "Standard",
+      "accountManager": "Maria Lopez",
+      "balance": 890000,
+      "lastContact": "2024-02-28",
+      "balanceHistory": [920000, 910000, 905000, 900000, 895000, 892000, 890000]
+    },
+    {
+      "id": "CLT-1004",
+      "name": "Blue Harbor Logistics",
+      "status": "Active",
+      "tier": "Standard",
+      "accountManager": "David Park",
+      "balance": 1120000,
+      "lastContact": "2024-03-10",
+      "balanceHistory": [980000, 1010000, 1040000, 1070000, 1090000, 1110000, 1120000]
+    },
+    {
+      "id": "CLT-1005",
+      "name": "Meridian Health Systems",
+      "status": "Active",
+      "tier": "Premier",
+      "accountManager": "Sarah Chen",
+      "balance": 3200000,
+      "lastContact": "2024-03-14",
+      "balanceHistory": [2900000, 2950000, 3000000, 3050000, 3100000, 3150000, 3200000]
+    },
+    {
+      "id": "CLT-1006",
+      "name": "Cascade Energy Corp",
+      "status": "Inactive",
+      "tier": "Standard",
+      "accountManager": "James Okonkwo",
+      "balance": 450000,
+      "lastContact": "2023-11-20",
+      "balanceHistory": [520000, 510000, 490000, 480000, 470000, 460000, 450000]
+    },
+    {
+      "id": "CLT-1007",
+      "name": "Pinnacle Financial Services",
+      "status": "Active",
+      "tier": "Premier",
+      "accountManager": "Maria Lopez",
+      "balance": 4100000,
+      "lastContact": "2024-03-16",
+      "balanceHistory": [3800000, 3850000, 3900000, 3950000, 4000000, 4050000, 4100000]
+    },
+    {
+      "id": "CLT-1008",
+      "name": "Horizon Manufacturing Inc",
+      "status": "Review",
+      "tier": "Standard",
+      "accountManager": "David Park",
+      "balance": 675000,
+      "lastContact": "2024-03-01",
+      "balanceHistory": [700000, 695000, 690000, 685000, 680000, 678000, 675000]
+    }
+  ]
+}
