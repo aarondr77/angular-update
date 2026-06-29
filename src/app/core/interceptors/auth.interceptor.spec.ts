@@ -4,6 +4,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { firstValueFrom, of } from 'rxjs';
 import { AuthInterceptor } from './auth.interceptor';
 import { selectAuthUser } from '../../store/auth/auth.selectors';
+import { AuthUser } from '../../models';
 
 /**
  * Characterization tests — pins AuthInterceptor behavior before Angular 14→15 upgrade.
@@ -43,7 +44,11 @@ describe('AuthInterceptor (characterization)', () => {
   });
 
   it('attaches Authorization header when user has token', async () => {
-    store.overrideSelector(selectAuthUser, { token: 'test-token-123' } as any);
+    store.overrideSelector(selectAuthUser, {
+      token: 'test-token-123',
+      username: 'test',
+      displayName: 'Test',
+    } as AuthUser);
     store.refreshState();
 
     const req = new HttpRequest('GET', '/api/clients');
@@ -56,8 +61,12 @@ describe('AuthInterceptor (characterization)', () => {
     expect(calledReq.headers.get('Authorization')).toBe('Bearer test-token-123');
   });
 
-  it('does not attach header when user has no token', async () => {
-    store.overrideSelector(selectAuthUser, { token: null } as any);
+  it('does not attach header when user has empty token', async () => {
+    store.overrideSelector(selectAuthUser, {
+      token: '',
+      username: 'test',
+      displayName: 'Test',
+    } as AuthUser);
     store.refreshState();
 
     const req = new HttpRequest('GET', '/api/clients');

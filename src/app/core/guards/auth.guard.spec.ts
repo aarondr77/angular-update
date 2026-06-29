@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Router, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { firstValueFrom } from 'rxjs';
 import { AuthGuard } from './auth.guard';
@@ -38,7 +38,9 @@ describe('AuthGuard (characterization)', () => {
   it('redirects to /login when not authenticated', async () => {
     store.overrideSelector(selectIsAuthenticated, false);
     store.refreshState();
-    const result = await firstValueFrom(guard.canActivate() as any);
+    const result = await firstValueFrom(
+      guard.canActivate() as ReturnType<typeof guard.canActivate>
+    );
     expect(router.createUrlTree).toHaveBeenCalledWith(['/login']);
     expect(result).toBe('login-url-tree');
   });
@@ -46,7 +48,9 @@ describe('AuthGuard (characterization)', () => {
   it('allows navigation when authenticated', async () => {
     store.overrideSelector(selectIsAuthenticated, true);
     store.refreshState();
-    const result = await firstValueFrom(guard.canActivate() as any);
+    const result = await firstValueFrom(
+      guard.canActivate() as ReturnType<typeof guard.canActivate>
+    );
     expect(result).toBe(true);
   });
 });
