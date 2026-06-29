@@ -16,18 +16,24 @@ import { AuthNavigationEffects } from './core/effects/auth-navigation.effects';
 import { notificationInitializerProvider } from './core/initializers/notification.initializer';
 import { environment } from '../environments/environment';
 
-@NgModule({ declarations: [AppComponent],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        StoreModule.forRoot(reducers),
-        EffectsModule.forRoot([AuthEffects, ClientsEffects, AuthNavigationEffects]),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25,
-            logOnly: environment.production,
-        })], providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-        notificationInitializerProvider,
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects, ClientsEffects, AuthNavigationEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    notificationInitializerProvider,
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}
