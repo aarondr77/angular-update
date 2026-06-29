@@ -14,10 +14,10 @@ import { selectAuthUser } from '../store/auth/auth.selectors';
 import * as AuthActions from '../store/auth/auth.actions';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
-    standalone: false
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
+  standalone: false,
 })
 export class DashboardComponent implements OnInit {
   clients$: Observable<Client[]>;

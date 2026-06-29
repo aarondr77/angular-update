@@ -5,8 +5,8 @@ import { NotificationBatchService } from '../notification-batch.service';
  * C3 specimen component — no unit tests at baseline.
  */
 @Component({
-    selector: 'app-render-count',
-    template: `
+  selector: 'app-render-count',
+  template: `
     <section
       class="render-count-panel"
       data-testid="render-count-panel"
@@ -28,8 +28,8 @@ import { NotificationBatchService } from '../notification-batch.service';
       </button>
     </section>
   `,
-    styles: [
-        `
+  styles: [
+    `
       .render-count-panel {
         padding: 12px;
         border: 1px solid #ccc;
@@ -46,8 +46,8 @@ import { NotificationBatchService } from '../notification-batch.service';
         cursor: pointer;
       }
     `,
-    ],
-    standalone: false
+  ],
+  standalone: false,
 })
 export class RenderCountComponent implements OnInit {
   renderCount = 0;

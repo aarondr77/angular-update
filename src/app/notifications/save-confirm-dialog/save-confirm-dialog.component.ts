@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-    selector: 'app-save-confirm-dialog',
-    template: `
+  selector: 'app-save-confirm-dialog',
+  template: `
     <h2 mat-dialog-title>Save preferences?</h2>
     <mat-dialog-content>
       <p id="save-dialog-desc">Your notification settings will be updated immediately.</p>
@@ -13,7 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
       <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
     </mat-dialog-actions>
   `,
-    standalone: false
+  standalone: false,
 })
 export class SaveConfirmDialogComponent {
   constructor(private dialogRef: MatDialogRef<SaveConfirmDialogComponent>) {}
