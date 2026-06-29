@@ -12,9 +12,10 @@ import {
 } from '../store/clients/clients.selectors';
 
 @Component({
-  selector: 'app-client-detail',
-  templateUrl: './client-detail.component.html',
-  styleUrls: ['./client-detail.component.scss'],
+    selector: 'app-client-detail',
+    templateUrl: './client-detail.component.html',
+    styleUrls: ['./client-detail.component.scss'],
+    standalone: false
 })
 export class ClientDetailComponent implements OnInit, OnDestroy {
   client$: Observable<Client | undefined>;

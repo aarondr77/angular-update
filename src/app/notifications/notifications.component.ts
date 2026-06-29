@@ -11,9 +11,10 @@ import {
 import { SaveConfirmDialogComponent } from './save-confirm-dialog/save-confirm-dialog.component';
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss'],
+    selector: 'app-notifications',
+    templateUrl: './notifications.component.html',
+    styleUrls: ['./notifications.component.scss'],
+    standalone: false
 })
 export class NotificationsComponent {
   preferences$: Observable<NotificationPreference[]>;
