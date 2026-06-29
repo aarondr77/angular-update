@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import { selectIsAuthenticated } from '../../store/auth/auth.selectors';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard  {
+export class AuthGuard {
   constructor(private store: Store, private router: Router) {}
 
   canActivate(): Observable<boolean | UrlTree> {
