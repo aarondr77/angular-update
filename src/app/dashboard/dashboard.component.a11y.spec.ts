@@ -3,17 +3,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { axe } from 'jest-axe';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyChipsModule as MatChipsModule } from '@angular/material/legacy-chips';
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { clientsAdapter, initialState } from '../store/clients/clients.reducer';
-import { Client } from '../models';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { initialState } from '../store/clients/clients.reducer';
 import { CurrencyCompactPipe } from '../shared/pipes/currency-compact.pipe';
 import { DashboardComponent } from './dashboard.component';
 
-const emptyClients = clientsAdapter.setAll([] as Client[], { ...initialState, loaded: true });
+const loadingClients = { ...initialState, loading: true };
 
 describe('DashboardComponent a11y', () => {
   let fixture: ComponentFixture<DashboardComponent>;
@@ -26,6 +26,7 @@ describe('DashboardComponent a11y', () => {
         MatToolbarModule,
         MatCardModule,
         MatTableModule,
+        MatSortModule,
         MatButtonModule,
         MatChipsModule,
         MatProgressSpinnerModule,
@@ -38,7 +39,7 @@ describe('DashboardComponent a11y', () => {
               loading: false,
               error: null,
             },
-            clients: emptyClients,
+            clients: loadingClients,
           },
         }),
       ],
